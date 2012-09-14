@@ -1,0 +1,24 @@
+SECTIONS
+{
+	.init 0x0000 : {
+		*(.init)
+	}
+
+  .text  0x8000 :
+  {
+    text = .; _text = .; __text = .;
+    *(.text)
+  }
+  .data  :
+  {
+    data = .; _data = .; __data = .;
+    *(.data)
+    kimage_text = .;
+    LONG(text);
+    kimage_data = .;
+    LONG(data);
+    kimage_end = .;
+    LONG(end);
+  }
+  end = .; _end = .; __end = .;
+}
