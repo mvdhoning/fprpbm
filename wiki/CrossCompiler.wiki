@@ -1,4 +1,4 @@
-#summary How to make a FreePascal cross compiler.
+#summary How to make a FreePascal cross compiler for use with the Raspberry Pi.
 
 = Introduction =
 
