@@ -7,7 +7,12 @@ To use FreePascal for bare metal programming on the Raspberry Pi we first need a
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ * download and install freepascal version 2.6.0 in your home folder 
+ * download and install arm compiler as used in: http://www.cl.cam.ac.uk/freshers/raspberrypi/tutorials/os/ok01.html
+ * add the following bin folder on your path
+  * export PATH=$PATH:$HOME/fpc-2.6.0/bin
+  * export PATH=$PATH:$HOME/arm-2008q3/bin
+ * in the freepascal bin folder copy pp386 to ppcppc
+ * make the cross compiler be executing the following command
+  * make crossinstall CPU_TARGET=arm OS_TARGET=linux CROSSBINDIR=~/arm-2008q3/bin OPT=-dFPC_ARMEL INSTALL_PREFIX=~/build NOGDB=1 BINUTILSPREFIX=arm-none-eabi-
+ * copy the ppccrossarm from the build folder as ppcarm in the freepascal bin folder
