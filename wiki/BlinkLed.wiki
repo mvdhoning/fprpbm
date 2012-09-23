@@ -46,3 +46,6 @@ this is implemented in gpio.pas
  * okledoff() turns off the ok led
 
 Next the kernel.pas calls the gpioinit and okledenable and then goes into an endless loop and in that loop calls okledon and okledoff.
+
+The code is based on a assembly tutorial featured on:
+[http://www.cl.cam.ac.uk/freshers/raspberrypi/tutorials/os/ok01.html]
