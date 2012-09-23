@@ -1,0 +1,23 @@
+#summary How to make the ok led blink on the Raspberry Pi.
+#labels rpi,okled,led
+
+= Introduction =
+
+Getting the ok led to blink on the RaspberryPi is step one for bare metal programming.
+Unfortunately the gpio on the RaspberryPi is somewhat complex.
+
+= Details =
+
+First of we start we need to get our fpc code started:
+  * make our main procedure known to the assembly part
+  * have the assembly part prepare the stack and call the main fpc procedure.
+This is implemented in kernel.pas an stub.s.
+kernel.pas
+ * The kmain procedure is known to the assembly part by [public, alias: 'kmain']
+ * Remember since this as arm we do not need to worry about stdcall vs cdecl and the likes.
+stub.s
+ * the kmain has to be made known here by .extern kmain
+ * next we can call it by doing a bl kmain
+ * to be sure we create an endless loop behind it.
+
+Next in fpc we can go initilize the ok led calling:
