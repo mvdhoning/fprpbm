@@ -1,4 +1,4 @@
-#summary To test out your bare metal kernel you need to prepare an sdcard for use with the Raspberry-Pi.
+#summary How to prepare an sdcard for use with the Raspberry-Pi.
 #labels rpi,boot,sdcard
 
 = Introduction =
