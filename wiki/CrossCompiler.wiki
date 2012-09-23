@@ -1,4 +1,5 @@
 #summary How to make a FreePascal cross compiler for use with the Raspberry Pi.
+#labels rpi,fpc,arm,crosscompiler,freepascal
 
 = Introduction =
 
