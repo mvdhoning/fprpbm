@@ -1,0 +1,13 @@
+#summary Serial communication between the Raspberry Pi and a host computer
+
+= Introduction =
+
+To debug what is happening on the Raspberry Pi we need a way to get contents of variables and hints of where the program is to be logged. The easiest way to do this is getting some kind of serial communication working.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
