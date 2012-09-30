@@ -64,6 +64,7 @@ Sending data goes like this:
 this is implemented in uart.pas
 
 uartinit() prepares the raspberry pi for serial communication on uart1
+
 uart_putc( c: longword ) writes an character to the uart
 
 
