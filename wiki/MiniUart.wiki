@@ -13,7 +13,7 @@ The startup of this example has changed to use 'new' kernel style so it now actu
 
 For now we are only interested in sending data and no recieving data so we ignore pin 15 (rx) for now.
 
-Like with the led example we first need to enable pin 14 (tx) but this time we cannot just enable output but we need to select an alternate function.
+Like with the led example we first need to enable pin 14 (tx) but this time we cannot just enable output but we need to select an alternate function (alt5 for uart1).
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
