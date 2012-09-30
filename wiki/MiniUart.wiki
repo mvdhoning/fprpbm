@@ -4,11 +4,9 @@
 
 To debug what is happening on the Raspberry Pi we need a way to get contents of variables and hints of where the program is to be logged. The easiest way to do this is getting some kind of serial communication working.
 
-Work In Progress
-
 = Details =
 
-Via gpio the Raspberry Pi provides and mini uart via gpio pin 14 (tx) and gpio pin 15 (rx). Note: make sure you use 3.5v ftdi cable. Normal usb -> serial use a to high voltage (5v) for the Raspberry Pi.
+Via gpio the Raspberry Pi provides an mini uart via gpio pin 14 (tx) and gpio pin 15 (rx). Note: make sure you use 3.5v ftdi cable. Normal usb -> serial use a to high voltage (5v) for the Raspberry Pi.
 
 The startup of this example has changed to use 'new' kernel style so it now actualy loads and start at $8000.
 
@@ -62,5 +60,11 @@ Sending data goes like this:
  * we do this by checking if bit 5 of AUX_MU_LSR_REG is set (remember other bits may also bet set but we are only interested in bit 5)
  * so in fpc we can do a check like this: if boolean(AUX_MU_LSR_REG^ and $20)=true then
  * When the fifo is ready we can write the ascii value of the character we want to send to AUX_MU_IO_REG as an longword
+
+this is implemented in uart.pas
+
+uartinit() prepares the raspberry pi for serial communication on uart1
+uart_putc( c: longword ) writes an character to the uart
+
 
 The code is based on the uart01 example from dwelch67 wo did a great job on making an working uart example inspite of the errors in the manual : https://github.com/dwelch67/raspberrypi/tree/master/uart01
