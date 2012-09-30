@@ -20,7 +20,7 @@ For the uart to function we need to enable it first:
 You can control the uart with interupts if needed but for now we dont do that so:
  * write 0 to AUX_IER_REG
 
-We dont need extra features beyond a 16550 uart so:
+For now we disable auto flow control:
  * write 0 to AUX_CNTL_REG
 
 We want 8bit mode communication so:
@@ -43,13 +43,24 @@ To get a baud rate of 115200 we need to do some math:
  * ((250 000 000 / 115200) / 8) -1 = 270
  * write the outcome to AUX_MU_BAUD_REG
 
-Finally, like with the led example we also need to enable gpio pins. In this case gpio pin 14 (tx). But this time we cannot just enable output as we need to select an alternate function (alt5 for uart1).
+Now, like with the led example we also need to enable gpio pins. In this case gpio pin 14 (tx). But this time we cannot just enable output as we need to select an alternate function (alt5 for uart1).
 
-So with the uar1 enabled we are ready to go send some data out.
+To be sure we also disable the pull up down on pin 14.
+ * write 0 to GPPUD
+ * wait 150 ticks
+ * write pin 14 to GPPUDCLK0
+ * wait 150 tick
+ * write 0 to GPPUDCLK0
+
+Now we can enable auto flow:
+ * write 1 to bit 2 of AUX_MU_CNTL_REG
+
+So with the uart1 enabled we are ready to go send some data out.
 
 Sending data goes like this:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ * check if the transmit fifo can accept at least one byte
+ * we do this by checking if bit 5 of AUX_MU_LSR_REG is set (remember other bits may also bet set but we are only interested in bit 5)
+ * so in fpc we can do a check like this: if boolean(AUX_MU_LSR_REG^ and $20)=true then
+ * When the fifo is ready we can write the ascii value of the character we want to send to AUX_MU_IO_REG as an longword
 
-The code is based on the uart01 example from dwelch67 : https://github.com/dwelch67/raspberrypi/tree/master/uart01
+The code is based on the uart01 example from dwelch67 wo did a great job on making an working uart example inspite of the errors in the manual : https://github.com/dwelch67/raspberrypi/tree/master/uart01
