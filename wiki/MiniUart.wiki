@@ -13,7 +13,31 @@ The startup of this example has changed to use 'new' kernel style so it now actu
 
 For now we are only interested in sending data and no recieving data so we ignore pin 15 (rx) for now.
 
-Like with the led example we first need to enable pin 14 (tx) but this time we cannot just enable output but we need to select an alternate function (alt5 for uart1).
+For the uart to function we need to enable it first:
+ * write 1 to bit 0 of AUXENABLES
+
+You can control the uart with interupts if needed but for now we dont do that so:
+ * write 0 to AUX_IER_REG
+
+We dont need extra features beyond a 16550 uart so:
+ * write 0 to AUX_CNTL_REG
+
+We want 8bit mode communication so:
+ * write 3 to AUX_MU_LCR_REG (now according to the manual we should write 1 to bit 0 but its wrong, have a look at the errata)
+
+We dont want to use RTS so:
+ * write 0 to AUX_MU_MCR_REG
+
+Again as we dont use inerrupts we
+ * write 0 to bits 1 and 2 of AUX_MU_IER_REG
+
+AUX_MU_IIR_REG
+
+To get a baud rate of 115200 we need to do some math:
+ * 250 /
+ * write that value to AUX_MU_BAUD_REG
+
+Like with the led example we also need to enable gpio pins. In this case gpio pin 14 (tx). But this time we cannot just enable output as we need to select an alternate function (alt5 for uart1).
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
