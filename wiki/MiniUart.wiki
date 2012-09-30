@@ -65,7 +65,7 @@ this is implemented in uart.pas
 
 uartinit() prepares the raspberry pi for serial communication on uart1
 
-uart_putc( c: longword ) writes an character to the uart
+uart_putc( c: char ) writes an character to the uart
 
 
 The code is based on the uart01 example from dwelch67 wo did a great job on making an working uart example inspite of the errors in the manual : https://github.com/dwelch67/raspberrypi/tree/master/uart01
