@@ -7,7 +7,11 @@ To debug what is happening on the Raspberry Pi we need a way to get contents of 
 
 = Details =
 
-Add your content here.  Format your content with:
+Via gpio the Raspberry Pi provides and mini uart via gpio pin 14 (tx) and gpio pin 15 (rx). Note: make sure you use 3.5v ftdi cable. Normal usb -> serial use a to high voltage (5v) for the Raspberry Pi.
+
+The startup of this example has changed to use 'new' kernel style so it now actualy loads and start at $8000.
+
+Like with the led example we first need to enable pin 14 (tx) (for now we ignore recieving data)
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
