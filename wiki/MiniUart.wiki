@@ -4,6 +4,7 @@
 
 To debug what is happening on the Raspberry Pi we need a way to get contents of variables and hints of where the program is to be logged. The easiest way to do this is getting some kind of serial communication working.
 
+Work In Progress
 
 = Details =
 
@@ -34,8 +35,9 @@ Again as we dont use inerrupts we
 AUX_MU_IIR_REG
 
 To get a baud rate of 115200 we need to do some math:
- * 250 /
- * write that value to AUX_MU_BAUD_REG
+ * ((system_clock_freq/ baudrate) / 8) - 1 =baudrate_reg
+ * ((250 000 000 / 115200) / 8) -1 = 270
+ * write the outcome to AUX_MU_BAUD_REG
 
 Like with the led example we also need to enable gpio pins. In this case gpio pin 14 (tx). But this time we cannot just enable output as we need to select an alternate function (alt5 for uart1).
   * Text in *bold* or _italic_
