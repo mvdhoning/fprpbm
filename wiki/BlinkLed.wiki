@@ -16,7 +16,7 @@ kernel.pas
  * The kmain procedure is known to the assembly part by [public, alias: 'kmain']
  * Remember since this as arm we do not need to worry about stdcall vs cdecl and the likes.
 stub.s
- * this code starts at hex 1000 and next jumps to hex 8000 (this is old kernel style)
+ * this code starts at hex 1000 (init) and next jumps to hex 8000 (this is old kernel style)
  * the kmain has to be made known here by .extern kmain
  * next we can call it by doing a bl kmain
  * to be sure we create an endless loop behind it.
