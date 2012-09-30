@@ -29,17 +29,25 @@ We want 8bit mode communication so:
 We dont want to use RTS so:
  * write 0 to AUX_MU_MCR_REG
 
-Again as we dont use inerrupts we
- * write 0 to bits 1 and 2 of AUX_MU_IER_REG
+Again as we dont use inerrupts we:
+ * write 0 to AUX_MU_IER_REG (see page 12 of manual)
 
-AUX_MU_IIR_REG
+Next we want to enable FIFO and clear the FIFO:
+ * enabling the FIFO goes with bits 6 and 7
+ * clearing the FIFO goes with bits 1 and 2
+ * so we write 11000110 ($C6) to AUX_MU_IIR_REG
+ * (see page 13 of manual)
 
 To get a baud rate of 115200 we need to do some math:
  * ((system_clock_freq/ baudrate) / 8) - 1 =baudrate_reg
  * ((250 000 000 / 115200) / 8) -1 = 270
  * write the outcome to AUX_MU_BAUD_REG
 
-Like with the led example we also need to enable gpio pins. In this case gpio pin 14 (tx). But this time we cannot just enable output as we need to select an alternate function (alt5 for uart1).
+Finally, like with the led example we also need to enable gpio pins. In this case gpio pin 14 (tx). But this time we cannot just enable output as we need to select an alternate function (alt5 for uart1).
+
+So with the uar1 enabled we are ready to go send some data out.
+
+Sending data goes like this:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
