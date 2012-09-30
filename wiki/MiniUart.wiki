@@ -11,7 +11,9 @@ Via gpio the Raspberry Pi provides and mini uart via gpio pin 14 (tx) and gpio p
 
 The startup of this example has changed to use 'new' kernel style so it now actualy loads and start at $8000.
 
-Like with the led example we first need to enable pin 14 (tx) (for now we ignore recieving data)
+For now we are only interested in sending data and no recieving data so we ignore pin 15 (rx) for now.
+
+Like with the led example we first need to enable pin 14 (tx)
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
