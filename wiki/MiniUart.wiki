@@ -11,3 +11,5 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
+
+The code is based on the uart01 example from dwelch67 : https://github.com/dwelch67/raspberrypi/tree/master/uart01
